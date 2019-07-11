@@ -13,35 +13,10 @@ namespace BibliotecaOnline
         {
             CarregaBaseDeDados();
 
-            MostrarSejaBemVindo();            
+            MostrarSejaBemVindo();
 
             if (MenuInicial() == 1)
-            {
-                Console.Clear();
-                MostrarSejaBemVindo();
-                Console.WriteLine("Menu - Locação de livros");
-                Console.WriteLine("Digite o nome do livro a ser locado: ");
-
-                var nomedolivro = Console.ReadLine();
-                if (PesquisaLivroParaLocacao(nomedolivro))
-                {
-                    Console.Clear();
-                    MostrarSejaBemVindo();
-                    Console.WriteLine("Você deseja locar o livro? Para SIM digite 1. Para NÂO digite 0.");
-
-                    if(Console.ReadKey().KeyChar.ToString() == "1")
-                    {
-                        LocarLivro(nomedolivro);
-                        Console.WriteLine("\nLivro locado com sucesso!");
-                    }
-                    
-                    Console.WriteLine("\nLocação de livro cancelada.");
-                    Console.WriteLine("\n\nListagem de livros");
-
-                    for (int i = 0; i < baseDeLivros.GetLength(0); i++)
-                       Console.WriteLine($"Nome: {baseDeLivros[i, 0]} Disponível: {baseDeLivros[i, 1]}");
-                }
-            }
+                MostrarMenuLocacao();
             
             Console.ReadKey();
         }
@@ -119,6 +94,37 @@ namespace BibliotecaOnline
             {
                 if (nomeLivro == baseDeLivros[i, 0])
                     baseDeLivros[i, 1] = "não";
+            }
+        }
+
+        /// <summary>
+        /// Método que carrega a o conteúdo inicial da aplicação - Menu 1.
+        /// </summary>
+        public static void MostrarMenuLocacao()
+        {
+            Console.Clear();
+            MostrarSejaBemVindo();
+            Console.WriteLine("Menu - Locação de livros");
+            Console.WriteLine("Digite o nome do livro a ser locado: ");
+
+            var nomedolivro = Console.ReadLine();
+            if (PesquisaLivroParaLocacao(nomedolivro))
+            {
+                Console.Clear();
+                MostrarSejaBemVindo();
+                Console.WriteLine("Você deseja locar o livro? Para SIM digite 1. Para NÂO digite 0.");
+
+                if (Console.ReadKey().KeyChar.ToString() == "1")
+                {
+                    LocarLivro(nomedolivro);
+                    Console.WriteLine("\nLivro locado com sucesso!");
+                }
+
+                Console.WriteLine("\nLocação de livro cancelada.");
+                Console.WriteLine("\n\nListagem de livros");
+
+                for (int i = 0; i < baseDeLivros.GetLength(0); i++)
+                    Console.WriteLine($"Nome: {baseDeLivros[i, 0]} Disponível: {baseDeLivros[i, 1]}");
             }
         }
     }
