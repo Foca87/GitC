@@ -24,10 +24,10 @@ namespace LocadoraDeVeiculos
                 case 2:
                     MostrarMenuDevolucao();
                     break;
-                default:
-                    Console.ReadKey();
+                default:                    
                     break;
             }
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -43,9 +43,18 @@ namespace LocadoraDeVeiculos
         }
 
         /// <summary>
-        /// Método que faz a listagem da base de dados por linha.
+        /// Método que faz a listagem da base de dados por linha sem informar a disponibilidade.
         /// </summary>
         public static void ListaBaseDeDados()
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+                Console.WriteLine($"Veículo: {baseDeVeiculos[i, 0]} Ano: {baseDeVeiculos[i, 1]}");                
+        }
+
+        /// <summary>
+        /// Método que faz a listagem da base de dados por linha.
+        /// </summary>
+        public static void ListaBaseDeDadosCompleta()
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
                 Console.WriteLine($"Veículo: {baseDeVeiculos[i, 0]} Ano: {baseDeVeiculos[i, 1]} Disponível? {baseDeVeiculos[i, 2]}");
@@ -107,7 +116,7 @@ namespace LocadoraDeVeiculos
 
                 Console.WriteLine("\n\nListagem de Veículos");
 
-                ListaBaseDeDados();
+                ListaBaseDeDadosCompleta();
             }
         }
 
@@ -184,7 +193,7 @@ namespace LocadoraDeVeiculos
 
                 Console.WriteLine("\n\nListagem de Veículos");
 
-                ListaBaseDeDados();
+                ListaBaseDeDadosCompleta();
             }
         }
 
@@ -201,7 +210,7 @@ namespace LocadoraDeVeiculos
                 {
                     Console.WriteLine($"O {modeloVeiculo} " +
                         $"fabricado em {baseDeVeiculos[i, 1]} " +
-                        $"pode ser devolvido? {baseDeVeiculos[i, 2]}");
+                        $"pode ser devolvido.");
 
                     return baseDeVeiculos[i, 2] == "não";
                 }
