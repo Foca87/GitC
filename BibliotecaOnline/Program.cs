@@ -13,11 +13,19 @@ namespace BibliotecaOnline
         {
             CarregaBaseDeDados();
 
-            MostrarSejaBemVindo();
+            int opcaoMenu = MenuPrincipal();
 
-            if (MenuInicial() == 1)
-                MostrarMenuLocacao();
-            
+            while (opcaoMenu != 3)
+            {
+                if (opcaoMenu == 1)
+                    MostrarMenuLocacao();
+
+                if (opcaoMenu == 2)
+                    MostrarMenuDevolucao();
+
+                opcaoMenu = MenuPrincipal();
+            }
+
             Console.ReadKey();
         }
         /// <summary>
@@ -36,12 +44,17 @@ namespace BibliotecaOnline
         /// Método que mostra o menu inicial e as opções de escolha.
         /// </summary>
         /// <returns>Retorna o número do menu escolhido como um tipo inteiro.</returns>
-        public static int MenuInicial()
+        public static int MenuPrincipal()
         {
-            Console.WriteLine("\r\nMenu - Inicial");
+            Console.Clear();
+
+            MostrarSejaBemVindo();
+
+            Console.WriteLine("Menu - Inicial");
             Console.WriteLine("O que você deseja fazer?");
             Console.WriteLine("1 - Locar um livro");
-            Console.WriteLine("2 - Sair do sistema");
+            Console.WriteLine("2 - Devolver um livro");
+            Console.WriteLine("3 - Sair do sistema");
             Console.WriteLine("Digite o número desejado:");
 
             // Abaixo 3 opções para ler o input do usuário.
@@ -88,44 +101,90 @@ namespace BibliotecaOnline
         /// Método que loca o livro de acordo com o parâmetro passado.
         /// </summary>
         /// <param name="nomeLivro">Nome do Livro a ser locado</param>
-        public static void LocarLivro(string nomeLivro)
+        public static void LocarLivro(string nomeLivro, bool locar)
         {
             for (int i = 0; i < baseDeLivros.GetLength(0); i++)
             {
                 if (nomeLivro == baseDeLivros[i, 0])
-                    baseDeLivros[i, 1] = "não";
+                    baseDeLivros[i, 1] = locar? "não" : "sim";
             }
+
+            Console.Clear();
+            MostrarSejaBemVindo();
+            Console.WriteLine("Livro atualizado com sucesso!");
         }
 
         /// <summary>
-        /// Método que carrega a o conteúdo inicial da aplicação - Menu 1.
+        /// Método que carrega a o conteúdo inicial da aplicação - Menu de locação de Livros.
         /// </summary>
         public static void MostrarMenuLocacao()
         {
-            Console.Clear();
-            MostrarSejaBemVindo();
-            Console.WriteLine("Menu - Locação de livros");
-            Console.WriteLine("Digite o nome do livro a ser locado: ");
+            MostrarMenuInicialLivros("Locar um livro");
 
             var nomedolivro = Console.ReadLine();
             if (PesquisaLivroParaLocacao(nomedolivro))
             {
                 Console.Clear();
                 MostrarSejaBemVindo();
+
                 Console.WriteLine("Você deseja locar o livro? Para SIM digite 1. Para NÂO digite 0.");
 
-                if (Console.ReadKey().KeyChar.ToString() == "1")
-                {
-                    LocarLivro(nomedolivro);
-                    Console.WriteLine("\nLivro locado com sucesso!");
-                }
+                LocarLivro(nomedolivro, Console.ReadKey().KeyChar.ToString() == "1");
 
-                Console.WriteLine("\nLocação de livro cancelada.");
                 Console.WriteLine("\n\nListagem de livros");
 
-                for (int i = 0; i < baseDeLivros.GetLength(0); i++)
-                    Console.WriteLine($"Nome: {baseDeLivros[i, 0]} Disponível: {baseDeLivros[i, 1]}");
+                MostrarListaDeLivros();
+                Console.ReadKey();
             }
+        }
+
+        /// <summary>
+        /// Método que mostra a lista de livros atualizada.
+        /// </summary>
+        public static void MostrarListaDeLivros()
+        {
+            for (int i = 0; i < baseDeLivros.GetLength(0); i++)
+                Console.WriteLine($"Nome: {baseDeLivros[i, 0]} Disponível: {baseDeLivros[i, 1]}");
+        }
+
+        /// <summary>
+        /// Método que carrega a o conteúdo inicial da aplicação - Menu de devolução de Livros.
+        /// </summary>
+        public static void MostrarMenuDevolucao()
+        {
+            MostrarMenuInicialLivros("Devolver um livro");
+
+            //MostrarListaDeLivros();
+
+            var nomedolivro = Console.ReadLine();
+            if (!PesquisaLivroParaLocacao(nomedolivro))
+            {
+                Console.Clear();
+                MostrarSejaBemVindo();
+
+                Console.WriteLine("Você deseja devolver o livro? Para SIM digite 1. Para NÂO digite 0.");
+
+                LocarLivro(nomedolivro, Console.ReadKey().KeyChar.ToString() == "0");
+
+                Console.WriteLine("\n\nListagem de livros");
+
+                MostrarListaDeLivros();
+                Console.ReadKey();
+            }
+        }
+
+        /// <summary>
+        /// Método que apresenta o menu inicial das opções do que fazer com os livros.
+        /// </summary>
+        /// <param name="operacao"></param>
+        public static void MostrarMenuInicialLivros(string operacao)
+        {
+            Console.Clear();
+
+            MostrarSejaBemVindo();
+
+            Console.WriteLine($"Menu - {operacao}");
+            Console.WriteLine("Digite o nome do livro para realizar a operação: ");
         }
     }
 }
