@@ -30,6 +30,7 @@ namespace LocadoraDeVeiculos
             Console.ReadKey();
         }
 
+        #region Métodos
         /// <summary>
         /// Método que carrega a base de dados.
         /// </summary>
@@ -217,5 +218,6 @@ namespace LocadoraDeVeiculos
             }
             return false;
         }
+        #endregion
     }
 }
