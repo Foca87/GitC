@@ -15,16 +15,19 @@ namespace LocadoraDeVeiculos
             CarregaBaseDeDados();
 
             MostrarSejaBemVindo();
-            
+                        
             switch (MenuInicial())
             {
                 case 1:
-                    MostrarMenuLocacao();
+                    MenuLocacao();
                     break;
                 case 2:
-                    MostrarMenuDevolucao();
+                    MenuDevolucao();
                     break;
-                default:                    
+                case 3:
+                    ListaBaseDeDadosCompleta();
+                    break;
+                default:                        
                     break;
             }
             Console.ReadKey();
@@ -83,6 +86,7 @@ namespace LocadoraDeVeiculos
             Console.WriteLine("O que você deseja fazer?");
             Console.WriteLine("1 - Locar um Veículo");
             Console.WriteLine("2 - Devolver um Veículo");
+            Console.WriteLine("3 - Relatório de Veículos");
             Console.WriteLine("0 - Sair do sistema");
             Console.WriteLine("Digite o número da opção desejada:");
 
@@ -94,12 +98,11 @@ namespace LocadoraDeVeiculos
         /// <summary>
         /// Método que carrega o menu de Locação - Menu opção 1.
         /// </summary>
-        public static void MostrarMenuLocacao()
+        public static void MenuLocacao()
         {
-            Console.Clear();
-            MostrarSejaBemVindo();
-            Console.WriteLine("Menu - Locação de Veículos");
+            SubMenuInicial("Locação de Veículos");
             ListaBaseDeDados();
+
             Console.WriteLine("Digite o veículo que deseja locar:");
             var modeloveiculo = Console.ReadLine();
 
@@ -107,17 +110,52 @@ namespace LocadoraDeVeiculos
             {
                 Console.WriteLine("Você deseja locar o veículo? Para SIM digite 1. Para NÂO digite 0.");
 
-                if (Console.ReadKey().KeyChar.ToString() == "1")
-                {
-                    LocarVeiculo(modeloveiculo);
-                    Console.WriteLine("\nVeículo locado com sucesso!");
-                }
-                else
-                    Console.WriteLine("\nLocação de veículo cancelada.");
+                AtualizarVeiculo(modeloveiculo, Console.ReadKey().KeyChar.ToString() == "1");
+                Console.WriteLine("\nVeículo locado com sucesso!");
+                
+                Console.WriteLine("\n\nListagem de Veículos");
+
+                ListaBaseDeDadosCompleta();
+            }
+        }
+
+        /// <summary>
+        /// Método que carrega o menu de Devolução - Menu opção 2.
+        /// </summary>
+        public static void MenuDevolucao()
+        {
+            SubMenuInicial("Devolução de Veículos");
+
+            ListaBaseDeDados();
+
+            Console.WriteLine("Digite o veículo que deseja devolver:");
+
+            var modeloveiculo = Console.ReadLine();
+
+            if (PesquisaVeiculoParaDevolucao(modeloveiculo))
+            {
+                
+                Console.WriteLine("Você deseja devolver o veículo? Para SIM digite 1. Para NÂO digite 0.");
+
+                AtualizarVeiculo(modeloveiculo, Console.ReadKey().KeyChar.ToString() == "0");
+                Console.WriteLine("\nVeículo devolvido com sucesso!");
 
                 Console.WriteLine("\n\nListagem de Veículos");
 
                 ListaBaseDeDadosCompleta();
+            }
+        }
+
+        /// <summary>
+        /// Método que atualiza a disponibilidade do veículo.
+        /// </summary>
+        /// <param name="modeloVeiculo">Modelo do veículo a ser atualizado.</param>
+        public static void AtualizarVeiculo(string modeloVeiculo, bool atualizar)
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                if (modeloVeiculo == baseDeVeiculos[i, 0])
+                    baseDeVeiculos[i, 2] = atualizar ? "não" : "sim";
             }
         }
 
@@ -140,44 +178,65 @@ namespace LocadoraDeVeiculos
                 }
             }
             return false;
-        }
+        }       
 
         /// <summary>
-        /// Método que loca o veículo de acordo com o modelo informado.
+        /// Método que retorna se um veículo pode ser devolvido. 
         /// </summary>
-        /// <param name="modeloVeiculo">Modelo do veículo a ser locado.</param>
-        public static void LocarVeiculo(string modeloVeiculo)
+        /// <param name="modeloVeiculo"></param>
+        /// <returns>Retorna verdadeiro caso seja possível devolver o veículo.</returns>
+        public static bool PesquisaVeiculoParaDevolucao(string modeloVeiculo)
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
             {
-                if (modeloVeiculo == baseDeVeiculos[i, 0])
-                    baseDeVeiculos[i, 2] = "não";
+                if (modeloVeiculo == baseDeVeiculos[i, 0] && baseDeVeiculos[i,2] == "não")
+                {
+                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
+                         $"fabricado em {baseDeVeiculos[i, 1]} " +
+                         $"pode ser devolvido.");
+
+                    return baseDeVeiculos[i, 2] == "não";
+                }
+
+                if (modeloVeiculo == baseDeVeiculos[i, 0] && baseDeVeiculos[i, 2] == "sim")
+                {
+                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
+                        $"fabricado em {baseDeVeiculos[i, 1]} " +
+                        $"NÃO pode ser devolvido.");
+
+                    return false;
+                }
             }
+
+            return false;
         }
 
         /// <summary>
-        /// Método que devolve o veículo de acordo com o modelo informado.
+        /// Método que apresenta o submenu das opções dos veículos
         /// </summary>
-        /// <param name="modeloVeiculo">Modelo do veículo a ser devolvido.</param>
-        public static void DevolverVeiculo(string modeloVeiculo)
+        /// <param name="operacao"></param>
+        public static void SubMenuInicial(string operacao)
         {
-            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
-            {
-                if (modeloVeiculo == baseDeVeiculos[i, 0])
-                    baseDeVeiculos[i, 2] = "sim";
-            }
-        }
+            Console.Clear();
+            MostrarSejaBemVindo();
 
+            Console.WriteLine($"Menu - {operacao}");
+            Console.WriteLine("Digite o modelo do veículo para realizar a operação:");
+        }
+        #endregion
+        
+        /*
         /// <summary>
         /// Método que carrega o menu de Devolução - Menu opção 2.
         /// </summary>
         public static void MostrarMenuDevolucao()
         {
-            Console.Clear();
-            MostrarSejaBemVindo();
-            Console.WriteLine("Menu - Devolução de Veículos");
+            SubMenuInicial("Devolução de Veículos");
+
             ListaBaseDeDados();
+
             Console.WriteLine("Digite o veículo que deseja devolver:");
+
             var modeloveiculo = Console.ReadLine();
 
             if (PesquisaVeiculoParaDevolucao(modeloveiculo))
@@ -197,27 +256,6 @@ namespace LocadoraDeVeiculos
                 ListaBaseDeDadosCompleta();
             }
         }
-
-        /// <summary>
-        /// Método que retorna se um veículo pode ser devolvido. 
-        /// </summary>
-        /// <param name="modeloVeiculo"></param>
-        /// <returns>Retorna verdadeiro caso seja possível devolver o veículo.</returns>
-        public static bool PesquisaVeiculoParaDevolucao(string modeloVeiculo)
-        {
-            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
-            {
-                if (modeloVeiculo == baseDeVeiculos[i, 0])
-                {
-                    Console.WriteLine($"O {modeloVeiculo} " +
-                        $"fabricado em {baseDeVeiculos[i, 1]} " +
-                        $"pode ser devolvido.");
-
-                    return baseDeVeiculos[i, 2] == "não";
-                }
-            }
-            return false;
-        }
-        #endregion
+        */
     }
 }
