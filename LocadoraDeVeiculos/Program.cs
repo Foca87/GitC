@@ -16,10 +16,8 @@ namespace LocadoraDeVeiculos
 
             MostrarSejaBemVindo();
 
-            if(MenuInicial() == 1)
-            {
-                
-            }
+            if (MenuInicial() == 1)
+                MostrarMenuLocacao();
 
             Console.ReadKey();
         }
@@ -74,7 +72,9 @@ namespace LocadoraDeVeiculos
             return opcao;
         }
 
-        
+        /// <summary>
+        /// Método que carrega a o conteúdo inicial da aplicação - Menu 1.
+        /// </summary>
         public static void MostrarMenuLocacao()
         {
             Console.Clear();
@@ -82,7 +82,58 @@ namespace LocadoraDeVeiculos
             Console.WriteLine("Menu - Locação de Veículos");
             ListaBaseDeDados();
             Console.WriteLine("Digite o veículo que deseja locar:");
-            Console.ReadLine();
+            var modeloveiculo = Console.ReadLine();
+
+            if (PesquisaVeiculoParaLocacao(modeloveiculo))
+            {
+                Console.WriteLine("Você deseja locar o veículo? Para SIM digite 1. Para NÂO digite 0.");
+
+                if (Console.ReadKey().KeyChar.ToString() == "1")
+                {
+                    LocarVeiculo(modeloveiculo);
+                    Console.WriteLine("\nVeículo locado com sucesso!");
+                }
+                else
+                    Console.WriteLine("\nLocação de veículo cancelada.");
+
+                Console.WriteLine("\n\nListagem de Veículos");
+
+                ListaBaseDeDados();
+            }
+        }
+
+        /// <summary>
+        /// Método que retorna se um veículo pode ser locado. 
+        /// </summary>
+        /// <param name="modeloveiculo"></param>
+        /// <returns>Retorna verdadeiro caso o veículo esteja disponível para locação.</returns>
+        public static bool PesquisaVeiculoParaLocacao(string modeloveiculo)
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                if (modeloveiculo == baseDeVeiculos[i,0])
+                {
+                    Console.WriteLine($"O {modeloveiculo} " +
+                        $"fabricado em {baseDeVeiculos[i,1]} " +
+                        $"pode ser locado? {baseDeVeiculos[i, 2]}");
+
+                    return baseDeVeiculos[i, 2] == "sim";
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Método que loca o veículo de acordo com o modelo informado.
+        /// </summary>
+        /// <param name="modeloVeiculo">Modelo do veículo a ser locado.</param>
+        public static void LocarVeiculo(string modeloVeiculo)
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                if (modeloVeiculo == baseDeVeiculos[i, 0])
+                    baseDeVeiculos[i, 2] = "não";
+            }
         }
     }
 }
