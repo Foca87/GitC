@@ -15,11 +15,19 @@ namespace LocadoraDeVeiculos
             CarregaBaseDeDados();
 
             MostrarSejaBemVindo();
-
-            if (MenuInicial() == 1)
-                MostrarMenuLocacao();
-
-            Console.ReadKey();
+            
+            switch (MenuInicial())
+            {
+                case 1:
+                    MostrarMenuLocacao();
+                    break;
+                case 2:
+                    MostrarMenuDevolucao();
+                    break;
+                default:
+                    Console.ReadKey();
+                    break;
+            }
         }
 
         /// <summary>
@@ -64,6 +72,7 @@ namespace LocadoraDeVeiculos
             Console.WriteLine("\r\nMenu - Inicial");
             Console.WriteLine("O que você deseja fazer?");
             Console.WriteLine("1 - Locar um Veículo");
+            Console.WriteLine("2 - Devolver um Veículo");
             Console.WriteLine("0 - Sair do sistema");
             Console.WriteLine("Digite o número da opção desejada:");
 
@@ -73,7 +82,7 @@ namespace LocadoraDeVeiculos
         }
 
         /// <summary>
-        /// Método que carrega a o conteúdo inicial da aplicação - Menu 1.
+        /// Método que carrega o menu de Locação - Menu opção 1.
         /// </summary>
         public static void MostrarMenuLocacao()
         {
@@ -105,15 +114,15 @@ namespace LocadoraDeVeiculos
         /// <summary>
         /// Método que retorna se um veículo pode ser locado. 
         /// </summary>
-        /// <param name="modeloveiculo"></param>
+        /// <param name="modeloVeiculo"></param>
         /// <returns>Retorna verdadeiro caso o veículo esteja disponível para locação.</returns>
-        public static bool PesquisaVeiculoParaLocacao(string modeloveiculo)
+        public static bool PesquisaVeiculoParaLocacao(string modeloVeiculo)
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
             {
-                if (modeloveiculo == baseDeVeiculos[i,0])
+                if (modeloVeiculo == baseDeVeiculos[i,0])
                 {
-                    Console.WriteLine($"O {modeloveiculo} " +
+                    Console.WriteLine($"O {modeloVeiculo} " +
                         $"fabricado em {baseDeVeiculos[i,1]} " +
                         $"pode ser locado? {baseDeVeiculos[i, 2]}");
 
@@ -134,6 +143,70 @@ namespace LocadoraDeVeiculos
                 if (modeloVeiculo == baseDeVeiculos[i, 0])
                     baseDeVeiculos[i, 2] = "não";
             }
+        }
+
+        /// <summary>
+        /// Método que devolve o veículo de acordo com o modelo informado.
+        /// </summary>
+        /// <param name="modeloVeiculo">Modelo do veículo a ser devolvido.</param>
+        public static void DevolverVeiculo(string modeloVeiculo)
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                if (modeloVeiculo == baseDeVeiculos[i, 0])
+                    baseDeVeiculos[i, 2] = "sim";
+            }
+        }
+
+        /// <summary>
+        /// Método que carrega o menu de Devolução - Menu opção 2.
+        /// </summary>
+        public static void MostrarMenuDevolucao()
+        {
+            Console.Clear();
+            MostrarSejaBemVindo();
+            Console.WriteLine("Menu - Devolução de Veículos");
+            ListaBaseDeDados();
+            Console.WriteLine("Digite o veículo que deseja devolver:");
+            var modeloveiculo = Console.ReadLine();
+
+            if (PesquisaVeiculoParaDevolucao(modeloveiculo))
+            {
+                Console.WriteLine("Você deseja devolver o veículo? Para SIM digite 1. Para NÂO digite 0.");
+
+                if (Console.ReadKey().KeyChar.ToString() == "1")
+                {
+                    DevolverVeiculo(modeloveiculo);
+                    Console.WriteLine("\nVeículo devolvido com sucesso!");
+                }
+                else
+                    Console.WriteLine("\nDevolução de veículo cancelada.");
+
+                Console.WriteLine("\n\nListagem de Veículos");
+
+                ListaBaseDeDados();
+            }
+        }
+
+        /// <summary>
+        /// Método que retorna se um veículo pode ser devolvido. 
+        /// </summary>
+        /// <param name="modeloVeiculo"></param>
+        /// <returns>Retorna verdadeiro caso seja possível devolver o veículo.</returns>
+        public static bool PesquisaVeiculoParaDevolucao(string modeloVeiculo)
+        {
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                if (modeloVeiculo == baseDeVeiculos[i, 0])
+                {
+                    Console.WriteLine($"O {modeloVeiculo} " +
+                        $"fabricado em {baseDeVeiculos[i, 1]} " +
+                        $"pode ser devolvido? {baseDeVeiculos[i, 2]}");
+
+                    return baseDeVeiculos[i, 2] == "não";
+                }
+            }
+            return false;
         }
     }
 }
