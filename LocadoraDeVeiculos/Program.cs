@@ -15,22 +15,28 @@ namespace LocadoraDeVeiculos
             CarregaBaseDeDados();
 
             MostrarSejaBemVindo();
-                        
-            switch (MenuInicial())
+
+            do
             {
-                case 1:
-                    MenuLocacao();
-                    break;
-                case 2:
-                    MenuDevolucao();
-                    break;
-                case 3:
-                    ListaBaseDeDadosCompleta();
-                    break;
-                default:                        
-                    break;
-            }
-            Console.ReadKey();
+                switch (MenuInicial())
+                {
+                    case 1:
+                        MenuLocacao();
+                        break;
+                    case 2:
+                        MenuDevolucao();
+                        break;
+                    case 3:
+                        ListaBaseDeDadosCompleta();
+                        break;
+                    default:
+                        Console.WriteLine("\r\nOpção Incorreta!");
+                        Console.WriteLine("Por favor tente novamente.");
+                        break;
+                }
+
+                Console.ReadKey();
+            } while (true);            
         }
 
         #region Métodos
@@ -61,7 +67,7 @@ namespace LocadoraDeVeiculos
         public static void ListaBaseDeDadosCompleta()
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
-                Console.WriteLine($"Veículo: {baseDeVeiculos[i, 0]} Ano: {baseDeVeiculos[i, 1]} Disponível? {baseDeVeiculos[i, 2]}");
+                Console.WriteLine($"\r\nVeículo: {baseDeVeiculos[i, 0]} Ano: {baseDeVeiculos[i, 1]} Disponível? {baseDeVeiculos[i, 2]}");
         }
 
         /// <summary>
@@ -106,14 +112,16 @@ namespace LocadoraDeVeiculos
             Console.WriteLine("Digite o veículo que deseja locar:");
             var modeloveiculo = Console.ReadLine();
 
-            if (PesquisaVeiculoParaLocacao(modeloveiculo))
+            var resultadoPesquisa = PesquisaVeiculo(ref modeloveiculo);
+
+            if (resultadoPesquisa != null && resultadoPesquisa == true)
             {
                 Console.WriteLine("Você deseja locar o veículo? Para SIM digite 1. Para NÂO digite 0.");
 
                 AtualizarVeiculo(modeloveiculo, Console.ReadKey().KeyChar.ToString() == "1");
                 Console.WriteLine("\nVeículo locado com sucesso!");
                 
-                Console.WriteLine("\n\nListagem de Veículos");
+                Console.WriteLine("\n\nListagem de Veículos\r\n");
 
                 ListaBaseDeDadosCompleta();
             }
@@ -125,14 +133,14 @@ namespace LocadoraDeVeiculos
         public static void MenuDevolucao()
         {
             SubMenuInicial("Devolução de Veículos");
-
             ListaBaseDeDados();
 
             Console.WriteLine("Digite o veículo que deseja devolver:");
-
             var modeloveiculo = Console.ReadLine();
 
-            if (PesquisaVeiculoParaDevolucao(modeloveiculo))
+            var resultadoPesquisa = PesquisaVeiculo(ref modeloveiculo);
+
+            if (resultadoPesquisa != null && resultadoPesquisa == true)
             {
                 
                 Console.WriteLine("Você deseja devolver o veículo? Para SIM digite 1. Para NÂO digite 0.");
@@ -140,7 +148,7 @@ namespace LocadoraDeVeiculos
                 AtualizarVeiculo(modeloveiculo, Console.ReadKey().KeyChar.ToString() == "0");
                 Console.WriteLine("\nVeículo devolvido com sucesso!");
 
-                Console.WriteLine("\n\nListagem de Veículos");
+                Console.WriteLine("\n\nListagem de Veículos\r\n");
 
                 ListaBaseDeDadosCompleta();
             }
@@ -154,7 +162,7 @@ namespace LocadoraDeVeiculos
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
             {
-                if (modeloVeiculo == baseDeVeiculos[i, 0])
+                if (CompararStrings(modeloVeiculo, baseDeVeiculos[i, 0]))
                     baseDeVeiculos[i, 2] = atualizar ? "não" : "sim";
             }
         }
@@ -164,51 +172,44 @@ namespace LocadoraDeVeiculos
         /// </summary>
         /// <param name="modeloVeiculo"></param>
         /// <returns>Retorna verdadeiro caso o veículo esteja disponível para locação.</returns>
-        public static bool PesquisaVeiculoParaLocacao(string modeloVeiculo)
+        public static bool? PesquisaVeiculo(ref string modeloVeiculo)
         {
             for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
             {
-                if (modeloVeiculo == baseDeVeiculos[i,0])
+                var comparacaoStrings = CompararStrings(modeloVeiculo, baseDeVeiculos[i, 0]);
+
+                if (comparacaoStrings == true && baseDeVeiculos[i, 2] == "sim")
                 {
-                    Console.WriteLine($"O {modeloVeiculo} " +
+                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
                         $"fabricado em {baseDeVeiculos[i,1]} " +
                         $"pode ser locado? {baseDeVeiculos[i, 2]}");
 
                     return baseDeVeiculos[i, 2] == "sim";
                 }
-            }
-            return false;
-        }       
-
-        /// <summary>
-        /// Método que retorna se um veículo pode ser devolvido. 
-        /// </summary>
-        /// <param name="modeloVeiculo"></param>
-        /// <returns>Retorna verdadeiro caso seja possível devolver o veículo.</returns>
-        public static bool PesquisaVeiculoParaDevolucao(string modeloVeiculo)
-        {
-            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
-            {
-                if (modeloVeiculo == baseDeVeiculos[i, 0] && baseDeVeiculos[i,2] == "não")
-                {
-                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
-                         $"fabricado em {baseDeVeiculos[i, 1]} " +
-                         $"pode ser devolvido.");
-
-                    return baseDeVeiculos[i, 2] == "não";
-                }
-
-                if (modeloVeiculo == baseDeVeiculos[i, 0] && baseDeVeiculos[i, 2] == "sim")
+                if (comparacaoStrings == true && baseDeVeiculos[i, 2] == "não")
                 {
                     Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
                         $"fabricado em {baseDeVeiculos[i, 1]} " +
-                        $"NÃO pode ser devolvido.");
+                        $"pode ser devolvido");
 
-                    return false;
+                    return baseDeVeiculos[i, 2] == "não";
                 }
             }
 
-            return false;
+            Console.WriteLine("Nenhum carro encontrado. Deseja realizar a busca novamente ?");
+            Console.WriteLine("Digite o número da opção desejada: 1 - SIM | 2 - NÃO");
+
+            int.TryParse(Console.ReadKey().KeyChar.ToString(), out int opcao);
+
+            if (opcao == 1)
+            {
+                Console.WriteLine("Digite o veículo a ser pesquisado:");
+                modeloVeiculo = Console.ReadLine(); //linha 113 e 139
+
+                return PesquisaVeiculo(ref modeloVeiculo);
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -223,8 +224,59 @@ namespace LocadoraDeVeiculos
             Console.WriteLine($"Menu - {operacao}");
             Console.WriteLine("Digite o modelo do veículo para realizar a operação:");
         }
+
+        /// <summary>
+        /// Metodo que compara duas string deixando em caixa baixa e removendo espaços vazios dentro da mesma.
+        /// </summary>
+        /// <param name="primeiro">Primeira string a ser comparada.</param>
+        /// <param name="segundo">Segunda string a ser comparada.</param>
+        /// <returns>Retorna o resultado desta comparação como verdadeiro ou falso.</returns>
+        public static bool CompararStrings (string primeiro, string segundo)
+        {
+            if (primeiro.ToLower().Replace(" ", "") == segundo.ToLower().Replace(" ", ""))
+                return true;
+
+            return false;
+        }
         #endregion
-        
+
+
+
+        /*
+        /// <summary>
+        /// Método que retorna se um veículo pode ser devolvido. 
+        /// </summary>
+        /// <param name="modeloVeiculo"></param>
+        /// <returns>Retorna verdadeiro caso seja possível devolver o veículo.</returns>
+        public static bool PesquisaVeiculoParaDevolucao(string modeloVeiculo)
+        {            
+            for (int i = 0; i < baseDeVeiculos.GetLength(0); i++)
+            {
+                var comparacaoStrings = CompararStrings(modeloVeiculo, baseDeVeiculos[i, 0]);
+
+                if (comparacaoStrings && baseDeVeiculos[i,2] == "não")
+                {
+                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
+                         $"fabricado em {baseDeVeiculos[i, 1]} " +
+                         $"pode ser devolvido.");
+
+                    return baseDeVeiculos[i, 2] == "não";
+                }
+
+                if (comparacaoStrings && baseDeVeiculos[i, 2] == "sim")
+                {
+                    Console.WriteLine($"O {baseDeVeiculos[i, 0]} " +
+                        $"fabricado em {baseDeVeiculos[i, 1]} " +
+                        $"NÃO pode ser devolvido.");
+
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        */
+
         /*
         /// <summary>
         /// Método que carrega o menu de Devolução - Menu opção 2.
