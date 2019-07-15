@@ -92,5 +92,11 @@ namespace Atividade1507
                 Console.WriteLine("O tamanho da lista foi atualizado!");
             }
         }
+
+
+        public static void SobrescreveRegistro(ref string[,] lista, int idLista)
+        {
+
+        }
     }
 }
