@@ -24,6 +24,14 @@ namespace CriacaoDeLista
                 Console.WriteLine(item); // Aqui apresentamos a lista na tela.
 
             Console.ReadKey();
+
+            for (int i = 0; i < lista.Length; i++)
+                lista[i] = string.Empty; // Aqui "limpamos" o valor dentro da coleção.
+
+            foreach (var item in lista)
+                Console.WriteLine(item);
+
+            Console.ReadKey();
         }
     }
 }
