@@ -82,19 +82,33 @@ namespace BibliotecaOnline
         /// </summary>
         /// <param name="nomeLivro">Nome do livro a ser pesquisado.</param>
         /// <returns>Retorna verdadeiro caso o livro esteja disponível para locação.</returns>
-        public static bool PesquisaLivroParaLocacao(string nomeLivro)
+        public static bool? PesquisaLivroParaLocacao(string nomeLivro)
         {
             for (int i = 0; i < baseDeLivros.GetLength(0); i++)
             {
-                if (nomeLivro == baseDeLivros[i, 0])
+                if (CompararNomes(nomeLivro, baseDeLivros[i,0]))
                 {
-                    Console.WriteLine($"O livro {nomeLivro} " +
+                    Console.WriteLine($"O livro {baseDeLivros[i,0]} " +
                         $"pode ser locado? {baseDeLivros[i, 1]}");
 
                     return baseDeLivros[i, 1] == "sim";
                 }
             }
-            return false;
+
+            Console.WriteLine("Nenhum livro encontrado. Deseja realizar a busca novamente?");
+            Console.WriteLine("Digite o número da opção desejada: 1 - SIM | 2 - NÃO");
+
+            int.TryParse(Console.ReadKey().KeyChar.ToString(), out int opcao);
+
+            if (opcao == 1)
+            {
+                Console.WriteLine("Digite o nome do livro a ser pesquisado: ");
+                nomeLivro = Console.ReadLine();
+
+                return PesquisaLivroParaLocacao(nomeLivro);
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -122,7 +136,9 @@ namespace BibliotecaOnline
             MostrarMenuInicialLivros("Locar um livro");
 
             var nomedolivro = Console.ReadLine();
-            if (PesquisaLivroParaLocacao(nomedolivro))
+            var resultadoPesquisa = PesquisaLivroParaLocacao(nomedolivro);
+
+            if (resultadoPesquisa != null && resultadoPesquisa == true)
             {
                 Console.Clear();
                 MostrarSejaBemVindo();
@@ -157,7 +173,9 @@ namespace BibliotecaOnline
             //MostrarListaDeLivros();
 
             var nomedolivro = Console.ReadLine();
-            if (!PesquisaLivroParaLocacao(nomedolivro))
+            var resultadoPesquisa = PesquisaLivroParaLocacao(nomedolivro);
+
+            if (resultadoPesquisa != null && resultadoPesquisa == false)
             {
                 Console.Clear();
                 MostrarSejaBemVindo();
@@ -185,6 +203,20 @@ namespace BibliotecaOnline
 
             Console.WriteLine($"Menu - {operacao}");
             Console.WriteLine("Digite o nome do livro para realizar a operação: ");
+        }
+
+        /// <summary>
+        /// Método que compara duas strings deixando em letra minúscula e removendo espaços vazios.
+        /// </summary>
+        /// <param name="primeiro">Primeira string a ser comparada.</param>
+        /// <param name="segundo">Segunda string a ser comparada.</param>
+        /// <returns>Retorna verdadeiro quando ambas as strings são iguais.</returns>
+        public static bool CompararNomes(string primeiro, string segundo)
+        {
+            if (primeiro.ToLower().Replace(" ", "") == segundo.ToLower().Replace(" ", ""))
+                return true;
+
+            return false;
         }
     }
 }
