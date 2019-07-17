@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[AulaCsharp]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1), 
+    [Aluno] VARCHAR(100) NOT NULL, 
+    [Idade] INT NULL, 
+    [Ativo] BIT NOT NULL DEFAULT 1 , 
+    [UsuInc] INT NOT NULL, 
+    [UsuAlt] INT NOT NULL, 
+    [DatInc] DATE NOT NULL DEFAULT GETDATE(), 
+    [DatAlt] DATE NOT NULL DEFAULT GETDATE()
+)
