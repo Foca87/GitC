@@ -88,15 +88,17 @@ namespace DataGridViewExample
             frmAdicionarCarros adicionarCarro = new frmAdicionarCarros();
             adicionarCarro.ShowDialog();
 
-            this.carrosTableAdapter.Insert(
-                adicionarCarro.CarrosRow.Modelo,
-                adicionarCarro.CarrosRow.Ano,
-                adicionarCarro.CarrosRow.Marca,
-                true,
-                1,
-                1,
-                DateTime.Now,
-                DateTime.Now); // Atualiza a tabela
+            if (!string.IsNullOrEmpty(adicionarCarro.CarrosRow?.Modelo))
+            {
+                this.carrosTableAdapter.Insert(adicionarCarro.CarrosRow.Modelo,
+                                               adicionarCarro.CarrosRow.Ano,
+                                               adicionarCarro.CarrosRow.Marca,
+                                               true,
+                                               1,
+                                               1,
+                                               DateTime.Now,
+                                               DateTime.Now); // Atualiza a tabela
+            }
 
             this.carrosTableAdapter.CustomQuery(this.querysInnerJoinDataSet1.Carros);
         }

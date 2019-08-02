@@ -1,4 +1,5 @@
-﻿using DataGridViewExample.Edicao;
+﻿using DataGridViewExample.Adicao;
+using DataGridViewExample.Edicao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace DataGridViewExample
         {
             var marcasSelect = ((System.Data.DataRowView)
                 this.dataGridView1.Rows[e.RowIndex].DataBoundItem).Row
-                as DataGridViewExample.QuerysInnerJoinDataSet1.MarcasRow;                        
+                as DataGridViewExample.QuerysInnerJoinDataSet1.MarcasRow;
 
             switch (e.ColumnIndex)
             {
@@ -41,10 +42,29 @@ namespace DataGridViewExample
                         editarMarcas.ShowDialog();
 
                         this.marcasTableAdapter.Update(editarMarcas.MarcasRow);
-                    } break;
+                    }
+                    break;
             }
 
             this.marcasTableAdapter.CustomQuery(querysInnerJoinDataSet1.Marcas);
+        }
+
+        private void BtnAdicionar_Click(object sender, EventArgs e)
+        {
+            frmAdicionarMarcas adicionarMarca = new frmAdicionarMarcas();
+            adicionarMarca.ShowDialog();
+
+            if (!string.IsNullOrEmpty(adicionarMarca.MarcasRow?.Nome))
+            {
+                this.marcasTableAdapter.Insert(adicionarMarca.MarcasRow.Nome,
+                                               true,
+                                               1001,
+                                               1001,
+                                               DateTime.Now,
+                                               DateTime.Now);
+            }
+
+            this.marcasTableAdapter.CustomQuery(this.querysInnerJoinDataSet1.Marcas);
         }
     }
 }

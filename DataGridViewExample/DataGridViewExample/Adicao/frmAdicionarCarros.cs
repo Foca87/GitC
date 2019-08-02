@@ -28,12 +28,12 @@ namespace DataGridViewExample.Adicao
         }
 
         private void BtnAdicionar_Click(object sender, EventArgs e)
-        {
+        {            
             CarrosRow = new Carro
             {
                 Modelo = tbxModelo.Text,
                 Ano = dtpAno.Value,
-                Marca = (int)cbxMarca.SelectedValue
+                Marca = cbxMarca.SelectedValue != null? (int)cbxMarca.SelectedValue : 0
             };
 
             this.Close();

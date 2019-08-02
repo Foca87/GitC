@@ -52,6 +52,24 @@
     <Compile Include="Adicao\frmAdicionarCarros.Designer.cs">
       <DependentUpon>frmAdicionarCarros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Adicao\frmAdicionarMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adicao\frmAdicionarMarcas.Designer.cs">
+      <DependentUpon>frmAdicionarMarcas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adicao\frmAdicionarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adicao\frmAdicionarUsuarios.Designer.cs">
+      <DependentUpon>frmAdicionarUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Adicao\frmAdicionarVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Adicao\frmAdicionarVendas.Designer.cs">
+      <DependentUpon>frmAdicionarVendas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Carros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +113,9 @@
       <DependentUpon>Marcas.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Carro.cs" />
+    <Compile Include="Model\Marca.cs" />
+    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Model\Venda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuerysInnerJoinDataSet1.Designer.cs">
@@ -116,6 +137,15 @@
     </Compile>
     <EmbeddedResource Include="Adicao\frmAdicionarCarros.resx">
       <DependentUpon>frmAdicionarCarros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adicao\frmAdicionarMarcas.resx">
+      <DependentUpon>frmAdicionarMarcas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adicao\frmAdicionarUsuarios.resx">
+      <DependentUpon>frmAdicionarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Adicao\frmAdicionarVendas.resx">
+      <DependentUpon>frmAdicionarVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Carros.resx">
       <DependentUpon>Carros.cs</DependentUpon>
