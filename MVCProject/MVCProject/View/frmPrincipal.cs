@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,12 +16,21 @@ namespace MVCProject.View
         public frmPrincipal()
         {
             InitializeComponent();
+
+            if (Session.user == null)
+                throw new Exception("Erro crítico do sistema!");
         }
 
         private void UsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUsuarios telaUsuarios = new frmUsuarios();
             telaUsuarios.ShowDialog();
+        }
+
+        private void AutorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAutores telaAutores = new frmAutores();
+            telaAutores.ShowDialog();
         }
     }
 }

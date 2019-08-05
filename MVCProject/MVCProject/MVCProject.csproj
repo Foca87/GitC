@@ -59,6 +59,7 @@
     <Compile Include="Model\Livro.cs" />
     <Compile Include="Model\LivroAutor.cs" />
     <Compile Include="Model\Locacao.cs" />
+    <Compile Include="Model\Session.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,11 +68,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SistemaBibliotecaDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddAutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddAutor.Designer.cs">
+      <DependentUpon>frmAddAutor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddEditora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddEditora.Designer.cs">
+      <DependentUpon>frmAddEditora.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormsAdicionar\frmAddUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\FormsAdicionar\frmAddUsuario.Designer.cs">
       <DependentUpon>frmAddUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditAutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditAutor.Designer.cs">
+      <DependentUpon>frmEditAutor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditEditora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditEditora.Designer.cs">
+      <DependentUpon>frmEditEditora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditUsuario.Designer.cs">
+      <DependentUpon>frmEditUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmAutores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmAutores.Designer.cs">
+      <DependentUpon>frmAutores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmEditoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmEditoras.Designer.cs">
+      <DependentUpon>frmEditoras.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -97,8 +140,29 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FormsAdicionar\frmAddAutor.resx">
+      <DependentUpon>frmAddAutor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsAdicionar\frmAddEditora.resx">
+      <DependentUpon>frmAddEditora.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormsAdicionar\frmAddUsuario.resx">
       <DependentUpon>frmAddUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsEditar\frmEditAutor.resx">
+      <DependentUpon>frmEditAutor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsEditar\frmEditEditora.resx">
+      <DependentUpon>frmEditEditora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsEditar\frmEditUsuario.resx">
+      <DependentUpon>frmEditUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmAutores.resx">
+      <DependentUpon>frmAutores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmEditoras.resx">
+      <DependentUpon>frmEditoras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

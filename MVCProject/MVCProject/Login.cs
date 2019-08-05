@@ -21,13 +21,21 @@ namespace MVCProject
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            frmPrincipal telaPrincipal = new frmPrincipal();
+            var login = this.usuariosTableAdapter1.QueryLogin(tbxLogin.Text, tbxSenha.Text);
 
-            this.Hide();
+            if (login != null)
+            {
+                Session.user = new Usuario();
+                Session.user.Id = (int)login;
 
-            telaPrincipal.ShowDialog();
+                frmPrincipal telaPrincipal = new frmPrincipal();
+                this.Hide();
 
-            this.Close();
+                telaPrincipal.ShowDialog();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Login Inválido!");
         }
     }
 }

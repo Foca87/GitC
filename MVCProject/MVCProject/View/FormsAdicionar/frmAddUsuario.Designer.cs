@@ -33,6 +33,10 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
+            this.tbxLogin = new System.Windows.Forms.TextBox();
+            this.tbxSenha = new System.Windows.Forms.TextBox();
+            this.tbxEmail = new System.Windows.Forms.TextBox();
+            this.btnAdicionar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNome
@@ -48,10 +52,10 @@
             // 
             // tbxNome
             // 
-            this.tbxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxNome.Location = new System.Drawing.Point(688, 289);
+            this.tbxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxNome.Location = new System.Drawing.Point(136, 15);
             this.tbxNome.Name = "tbxNome";
-            this.tbxNome.Size = new System.Drawing.Size(100, 45);
+            this.tbxNome.Size = new System.Drawing.Size(529, 38);
             this.tbxNome.TabIndex = 1;
             // 
             // lblLogin
@@ -87,11 +91,51 @@
             this.lblEmail.Text = "E-mail:";
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tbxLogin
+            // 
+            this.tbxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxLogin.Location = new System.Drawing.Point(136, 54);
+            this.tbxLogin.Name = "tbxLogin";
+            this.tbxLogin.Size = new System.Drawing.Size(529, 38);
+            this.tbxLogin.TabIndex = 8;
+            // 
+            // tbxSenha
+            // 
+            this.tbxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxSenha.Location = new System.Drawing.Point(136, 93);
+            this.tbxSenha.Name = "tbxSenha";
+            this.tbxSenha.Size = new System.Drawing.Size(529, 38);
+            this.tbxSenha.TabIndex = 9;
+            this.tbxSenha.UseSystemPasswordChar = true;
+            // 
+            // tbxEmail
+            // 
+            this.tbxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxEmail.Location = new System.Drawing.Point(136, 132);
+            this.tbxEmail.Name = "tbxEmail";
+            this.tbxEmail.Size = new System.Drawing.Size(529, 38);
+            this.tbxEmail.TabIndex = 10;
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdicionar.Location = new System.Drawing.Point(20, 183);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(645, 63);
+            this.btnAdicionar.TabIndex = 11;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.BtnAdicionar_Click);
+            // 
             // frmAddUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(682, 253);
+            this.Controls.Add(this.btnAdicionar);
+            this.Controls.Add(this.tbxEmail);
+            this.Controls.Add(this.tbxSenha);
+            this.Controls.Add(this.tbxLogin);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.lblLogin);
@@ -112,5 +156,9 @@
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox tbxLogin;
+        private System.Windows.Forms.TextBox tbxSenha;
+        private System.Windows.Forms.TextBox tbxEmail;
+        private System.Windows.Forms.Button btnAdicionar;
     }
 }

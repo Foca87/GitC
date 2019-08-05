@@ -11,26 +11,24 @@ using System.Windows.Forms;
 
 namespace MVCProject.View.FormsAdicionar
 {
-    public partial class frmAddUsuario : Form
+    public partial class frmAddAutor : Form
     {
-        public frmAddUsuario()
+        public frmAddAutor()
         {
             InitializeComponent();
         }
 
-        public Usuario novoUsuario;
+        public Autor novoAutor;
 
         private void BtnAdicionar_Click(object sender, EventArgs e)
         {
-            novoUsuario = new Usuario
+            novoAutor = new Autor
             {
                 Nome = tbxNome.Text,
-                Login = tbxLogin.Text,
-                Senha = tbxSenha.Text,
-                Email = tbxEmail.Text
+                Descricao = tbxDescricao.Text
             };
 
-            this.Close();
+            this.Close(); 
         }
     }
 }

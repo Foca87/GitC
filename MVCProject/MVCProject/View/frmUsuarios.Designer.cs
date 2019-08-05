@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.btnAdicionar = new System.Windows.Forms.Button();
+            this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemaBibliotecaDBDataSet = new MVCProject.SistemaBibliotecaDBDataSet();
+            this.usuariosTableAdapter = new MVCProject.SistemaBibliotecaDBDataSetTableAdapters.UsuariosTableAdapter();
             this.gridButtonDeletar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gridButtonEditar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,9 +46,6 @@
             this.usuAltDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datIncDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datAltDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sistemaBibliotecaDBDataSet = new MVCProject.SistemaBibliotecaDBDataSet();
-            this.usuariosTableAdapter = new MVCProject.SistemaBibliotecaDBDataSetTableAdapters.UsuariosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sistemaBibliotecaDBDataSet)).BeginInit();
@@ -78,6 +78,7 @@
             this.dgvUsuarios.RowTemplate.Height = 24;
             this.dgvUsuarios.Size = new System.Drawing.Size(800, 371);
             this.dgvUsuarios.TabIndex = 0;
+            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUsuarios_CellContentClick);
             // 
             // btnAdicionar
             // 
@@ -90,23 +91,39 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.BtnAdicionar_Click);
             // 
+            // usuariosBindingSource
+            // 
+            this.usuariosBindingSource.DataMember = "Usuarios";
+            this.usuariosBindingSource.DataSource = this.sistemaBibliotecaDBDataSet;
+            // 
+            // sistemaBibliotecaDBDataSet
+            // 
+            this.sistemaBibliotecaDBDataSet.DataSetName = "SistemaBibliotecaDBDataSet";
+            this.sistemaBibliotecaDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usuariosTableAdapter
+            // 
+            this.usuariosTableAdapter.ClearBeforeFill = true;
+            // 
             // gridButtonDeletar
             // 
-            this.gridButtonDeletar.DataPropertyName = "Id";
+            this.gridButtonDeletar.DataPropertyName = "Deletar";
             this.gridButtonDeletar.HeaderText = "Deletar";
             this.gridButtonDeletar.MinimumWidth = 6;
             this.gridButtonDeletar.Name = "gridButtonDeletar";
             this.gridButtonDeletar.ReadOnly = true;
+            this.gridButtonDeletar.Text = "Deletar";
             this.gridButtonDeletar.UseColumnTextForButtonValue = true;
             this.gridButtonDeletar.Width = 125;
             // 
             // gridButtonEditar
             // 
-            this.gridButtonEditar.DataPropertyName = "Id";
+            this.gridButtonEditar.DataPropertyName = "Editar";
             this.gridButtonEditar.HeaderText = "Editar";
             this.gridButtonEditar.MinimumWidth = 6;
             this.gridButtonEditar.Name = "gridButtonEditar";
             this.gridButtonEditar.ReadOnly = true;
+            this.gridButtonEditar.Text = "Editar";
             this.gridButtonEditar.UseColumnTextForButtonValue = true;
             this.gridButtonEditar.Width = 125;
             // 
@@ -199,20 +216,6 @@
             this.datAltDataGridViewTextBoxColumn.Name = "datAltDataGridViewTextBoxColumn";
             this.datAltDataGridViewTextBoxColumn.ReadOnly = true;
             this.datAltDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // usuariosBindingSource
-            // 
-            this.usuariosBindingSource.DataMember = "Usuarios";
-            this.usuariosBindingSource.DataSource = this.sistemaBibliotecaDBDataSet;
-            // 
-            // sistemaBibliotecaDBDataSet
-            // 
-            this.sistemaBibliotecaDBDataSet.DataSetName = "SistemaBibliotecaDBDataSet";
-            this.sistemaBibliotecaDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usuariosTableAdapter
-            // 
-            this.usuariosTableAdapter.ClearBeforeFill = true;
             // 
             // frmUsuarios
             // 
