@@ -10,12 +10,12 @@
     <Shape ID="DesignTable:Editoras" ZOrder="16" X="348" Y="298" Height="158" Width="224" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:Generos" ZOrder="15" X="348" Y="526" Height="158" Width="224" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:LivroAutor" ZOrder="14" X="348" Y="70" Height="135" Width="243" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
-    <Shape ID="DesignTable:Livros" ZOrder="13" X="70" Y="70" Height="480" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="354" />
-    <Shape ID="DesignTable:Locacao" ZOrder="12" X="348" Y="1143" Height="365" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
-    <Shape ID="DesignTable:Usuarios" ZOrder="11" X="348" Y="754" Height="365" Width="234" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
+    <Shape ID="DesignTable:Livros" ZOrder="1" X="70" Y="70" Height="480" Width="242" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="354" />
+    <Shape ID="DesignTable:Locacao" ZOrder="13" X="348" Y="1143" Height="365" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
+    <Shape ID="DesignTable:Usuarios" ZOrder="12" X="348" Y="754" Height="365" Width="234" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_LivroAutor_To_Autores" ZOrder="10" LineWidth="11">
+    <Connector ID="DesignRelation:FK_LivroAutor_To_Autores" ZOrder="11" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>661</X>
@@ -27,10 +27,10 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_LivroAutor_To_Livros" ZOrder="9" LineWidth="11">
+    <Connector ID="DesignRelation:FK_LivroAutor_To_Livros" ZOrder="10" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>325</X>
+          <X>312</X>
           <Y>137</Y>
         </Point>
         <Point>
@@ -39,19 +39,19 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Livros_To_Editoras" ZOrder="8" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Livros_To_Editoras" ZOrder="9" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>348</X>
           <Y>366</Y>
         </Point>
         <Point>
-          <X>325</X>
+          <X>312</X>
           <Y>366</Y>
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Livros_To_Generos" ZOrder="7" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Livros_To_Generos" ZOrder="8" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>348</X>
@@ -67,7 +67,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Livros_To_UsuariosAlt" ZOrder="6" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Livros_To_UsuariosAlt" ZOrder="7" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>348</X>
@@ -83,7 +83,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Livros_To_UsuariosInc" ZOrder="5" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Livros_To_UsuariosInc" ZOrder="6" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>348</X>
@@ -99,7 +99,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Locacao_To_Livros" ZOrder="4" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Locacao_To_Livros" ZOrder="5" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>237</X>
@@ -115,7 +115,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosAlt" ZOrder="3" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosAlt" ZOrder="4" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>451</X>
@@ -127,7 +127,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosInc" ZOrder="2" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosInc" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>459</X>
@@ -139,7 +139,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosLoc" ZOrder="1" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Locacao_To_UsuariosLoc" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>443</X>

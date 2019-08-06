@@ -10,25 +10,25 @@ using System.Windows.Forms;
 
 namespace MVCProject.View.FormsEditar
 {
-    public partial class frmEditEditora : Form
+    public partial class frmEditGenero : Form
     {
-        public frmEditEditora()
+        public frmEditGenero()
         {
             InitializeComponent();
         }
 
-        public MVCProject.SistemaBibliotecaDBDataSet.EditorasRow EditoraRow;
+        public MVCProject.SistemaBibliotecaDBDataSet.GenerosRow GeneroRow;
 
-        private void FrmEditEditora_Load(object sender, EventArgs e)
+        private void FrmEditGenero_Load(object sender, EventArgs e)
         {
-            tbxNome.Text = EditoraRow.Nome;
-            tbxDescricao.Text = EditoraRow.Descricao;
+            tbxTipo.Text = GeneroRow.Tipo;
+            tbxDescricao.Text = GeneroRow.Descricao;
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
-            EditoraRow.Nome = tbxNome.Text;
-            EditoraRow.Descricao = tbxDescricao.Text;
+            GeneroRow.Tipo = tbxTipo.Text;
+            GeneroRow.Descricao = tbxDescricao.Text;
 
             this.Close();
         }

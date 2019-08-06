@@ -32,5 +32,17 @@ namespace MVCProject.View
             frmAutores telaAutores = new frmAutores();
             telaAutores.ShowDialog();
         }
+
+        private void EditorasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEditoras telaEditoras = new frmEditoras();
+            telaEditoras.ShowDialog();
+        }
+
+        private void GênerosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGeneros telaGeneros = new frmGeneros();
+            telaGeneros.ShowDialog();
+        }
     }
 }
