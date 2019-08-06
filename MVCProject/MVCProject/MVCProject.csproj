@@ -86,6 +86,12 @@
     <Compile Include="View\FormsAdicionar\frmAddGenero.Designer.cs">
       <DependentUpon>frmAddGenero.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddLivro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsAdicionar\frmAddLivro.Designer.cs">
+      <DependentUpon>frmAddLivro.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormsAdicionar\frmAddUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,12 @@
     <Compile Include="View\FormsEditar\frmEditGenero.Designer.cs">
       <DependentUpon>frmEditGenero.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormsEditar\frmEditLivro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormsEditar\frmEditLivro.Designer.cs">
+      <DependentUpon>frmEditLivro.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormsEditar\frmEditUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +145,12 @@
     </Compile>
     <Compile Include="View\frmGeneros.Designer.cs">
       <DependentUpon>frmGeneros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmLivros.Designer.cs">
+      <DependentUpon>frmLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -167,6 +185,9 @@
     <EmbeddedResource Include="View\FormsAdicionar\frmAddGenero.resx">
       <DependentUpon>frmAddGenero.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsAdicionar\frmAddLivro.resx">
+      <DependentUpon>frmAddLivro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormsAdicionar\frmAddUsuario.resx">
       <DependentUpon>frmAddUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +200,9 @@
     <EmbeddedResource Include="View\FormsEditar\frmEditGenero.resx">
       <DependentUpon>frmEditGenero.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\FormsEditar\frmEditLivro.resx">
+      <DependentUpon>frmEditLivro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormsEditar\frmEditUsuario.resx">
       <DependentUpon>frmEditUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmGeneros.resx">
       <DependentUpon>frmGeneros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmLivros.resx">
+      <DependentUpon>frmLivros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

@@ -1735,6 +1735,8 @@ namespace MVCProject {
             
             private global::System.Data.DataColumn _columnEditoras_Nome;
             
+            private global::System.Data.DataColumn _columnGeneros_Tipo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public LivrosDataTable() {
@@ -1882,6 +1884,14 @@ namespace MVCProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn _Generos_TipoColumn {
+                get {
+                    return this._columnGeneros_Tipo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1917,7 +1927,7 @@ namespace MVCProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public LivrosRow AddLivrosRow(int Registro, string Titulo, string Isbn, GenerosRow parentGenerosRowByFK_Livros_To_Generos, EditorasRow parentEditorasRowByFK_Livros_To_Editoras, string Sinopse, string Observacoes, bool Ativo, UsuariosRow parentUsuariosRowByFK_Livros_To_UsuariosInc, UsuariosRow parentUsuariosRowByFK_Livros_To_UsuariosAlt, System.DateTime DatInc, System.DateTime DatAlt, string _Editoras_Nome) {
+            public LivrosRow AddLivrosRow(int Registro, string Titulo, string Isbn, GenerosRow parentGenerosRowByFK_Livros_To_Generos, EditorasRow parentEditorasRowByFK_Livros_To_Editoras, string Sinopse, string Observacoes, bool Ativo, UsuariosRow parentUsuariosRowByFK_Livros_To_UsuariosInc, UsuariosRow parentUsuariosRowByFK_Livros_To_UsuariosAlt, System.DateTime DatInc, System.DateTime DatAlt, string _Editoras_Nome, string _Generos_Tipo) {
                 LivrosRow rowLivrosRow = ((LivrosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1933,7 +1943,8 @@ namespace MVCProject {
                         null,
                         DatInc,
                         DatAlt,
-                        _Editoras_Nome};
+                        _Editoras_Nome,
+                        _Generos_Tipo};
                 if ((parentGenerosRowByFK_Livros_To_Generos != null)) {
                     columnValuesArray[4] = parentGenerosRowByFK_Livros_To_Generos[0];
                 }
@@ -1989,6 +2000,7 @@ namespace MVCProject {
                 this.columnDatInc = base.Columns["DatInc"];
                 this.columnDatAlt = base.Columns["DatAlt"];
                 this._columnEditoras_Nome = base.Columns["Editoras.Nome"];
+                this._columnGeneros_Tipo = base.Columns["Generos.Tipo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2024,6 +2036,10 @@ namespace MVCProject {
                 this._columnEditoras_Nome.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnEditoras_Nome");
                 this._columnEditoras_Nome.ExtendedProperties.Add("Generator_UserColumnName", "Editoras.Nome");
                 base.Columns.Add(this._columnEditoras_Nome);
+                this._columnGeneros_Tipo = new global::System.Data.DataColumn("Generos.Tipo", typeof(string), null, global::System.Data.MappingType.Element);
+                this._columnGeneros_Tipo.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnGeneros_Tipo");
+                this._columnGeneros_Tipo.ExtendedProperties.Add("Generator_UserColumnName", "Generos.Tipo");
+                base.Columns.Add(this._columnGeneros_Tipo);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -3454,6 +3470,22 @@ namespace MVCProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string _Generos_Tipo {
+                get {
+                    try {
+                        return ((string)(this[this.tableLivros._Generos_TipoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Generos.Tipo\' in table \'Livros\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLivros._Generos_TipoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public EditorasRow EditorasRow {
                 get {
                     return ((EditorasRow)(this.GetParentRow(this.Table.ParentRelations["FK_Livros_To_Editoras"])));
@@ -3530,6 +3562,18 @@ namespace MVCProject {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Set_Editoras_NomeNull() {
                 this[this.tableLivros._Editoras_NomeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Is_Generos_TipoNull() {
+                return this.IsNull(this.tableLivros._Generos_TipoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Set_Generos_TipoNull() {
+                this[this.tableLivros._Generos_TipoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5566,6 +5610,7 @@ SELECT Id, Tipo, Descricao FROM Generos WHERE (Id = @Id)";
             tableMapping.ColumnMappings.Add("DatInc", "DatInc");
             tableMapping.ColumnMappings.Add("DatAlt", "DatAlt");
             tableMapping.ColumnMappings.Add("Editoras.Nome", "Editoras.Nome");
+            tableMapping.ColumnMappings.Add("Generos.Tipo", "Generos.Tipo");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -5657,9 +5702,10 @@ SELECT Id, Registro, Titulo, Isbn, Genero, Editora, Sinopse, Observacoes, Ativo,
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT Livros.Id, Livros.Registro, Livros.Titulo, Livros.Isbn, Livros.Genero, Livros.Editora, Livros.Sinopse, Livros.Observacoes, Livros.Ativo, Livros.UsuInc, Livros.UsuAlt, Livros.DatInc, Livros.DatAlt, Editoras.Nome AS 'Editoras.Nome'
+            this._commandCollection[2].CommandText = @"SELECT Livros.Id, Livros.Registro, Livros.Titulo, Livros.Isbn, Livros.Genero, Livros.Editora, Livros.Sinopse, Livros.Observacoes, Livros.Ativo, Livros.UsuInc, Livros.UsuAlt, Livros.DatInc, Livros.DatAlt, Editoras.Nome AS 'Editoras.Nome', Generos.Tipo AS 'Generos.Tipo'
 FROM     Livros INNER JOIN
-                  Editoras ON Livros.Editora = Editoras.Id
+                  Editoras ON Livros.Editora = Editoras.Id INNER JOIN
+                  Generos ON Livros.Genero = Generos.Id
 WHERE  (Livros.Ativo = 1)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }

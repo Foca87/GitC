@@ -23,7 +23,6 @@ namespace MVCProject.View
         {
             // TODO: This line of code loads data into the 'sistemaBibliotecaDBDataSet.Usuarios' table. You can move, or remove it, as needed.
             this.usuariosTableAdapter.QueryShowAtivos(this.sistemaBibliotecaDBDataSet.Usuarios);
-
         }
 
         private void DgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

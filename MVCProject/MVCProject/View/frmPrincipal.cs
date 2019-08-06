@@ -44,5 +44,11 @@ namespace MVCProject.View
             frmGeneros telaGeneros = new frmGeneros();
             telaGeneros.ShowDialog();
         }
+
+        private void LivrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLivros telaLivros = new frmLivros();
+            telaLivros.ShowDialog();
+        }
     }
 }
