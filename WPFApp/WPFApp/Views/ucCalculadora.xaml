@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="WPFApp.Views.ucCalculadora"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="66*"/>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="98*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="134*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="378*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="tbxResultado" Margin="27.2,19.2,28.4,16.2" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button Name="btnDivisao" Content="/" Margin="47.2,20.8,44.2,7.076" Grid.Column="1" Click="Button_Click" FontSize="36" FontWeight="Bold" Grid.Row="2"/>
+        <Button Name="btnMultiplicacao" Content="*" Margin="25.8,20.8,51.4,7.076" Grid.Column="2" RenderTransformOrigin="0.5,0.504" Click="BtnMultiplicacao_Click" FontSize="36" FontWeight="Bold" Grid.Row="2"/>
+        <Button Name="btnSubtracao" Content="-" Margin="47.2,7.924,44.2,3.8" Grid.Column="1" Click="BtnSubtracao_Click" FontWeight="Bold" FontSize="36" Grid.Row="3"/>
+        <Button Name="btnSoma" Content="+" Margin="25.8,7.924,51.4,3.8" Grid.Column="2" RenderTransformOrigin="0.5,0.504" Click="BtnSoma_Click" FontSize="36" FontWeight="Bold" Grid.Row="3"/>
+        <TextBox Name="tbxValor1" Grid.Column="1" Margin="27.2,16.2,28.4,8.2" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <TextBox Name="tbxValor2" Grid.Column="1" Margin="27.2,16.8,28.4,6" TextWrapping="Wrap" Grid.Row="5" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</UserControl>
