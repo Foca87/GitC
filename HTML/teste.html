@@ -1,0 +1,114 @@
+<html>
+<head>
+    <style>
+        /* Classe específica*/
+        .buttonClass{
+            width:200px;
+            height:50px;
+        }
+        .esferasDeGiomar{
+            width:10px;
+            height:10px;
+            background-color:#000000;
+            border:1px solid #808080;
+            border-radius:100%;
+            position:absolute;
+        }
+        /*Para todas as tags input*/
+        input{
+            width:500px;
+            height:500px;
+            border-radius:25%;
+        }
+        .screen{
+            width:500px;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div id="GiomarBalls" incrementX="true" posLeft="10" incrementY="true" posTop="10" speedX="1" speedY="1" class="esferasDeGiomar"></div>
+    </div>
+    <div>
+        <label id="lblGiomarBallsCount">Contador de esferas do Giomar:{0}</label>
+    </div>
+    <div>
+        <input id="btnClickMe" class="buttonClass" type="button" value="Adiciona as esferas do Giomar" onclick="CriarGiomar()"/>
+    </div>
+    <script>
+        setInterval(Movimento, 10);
+
+        function Movimento() {
+            /*Para obter todas as esferas dentro o nosso documento.*/
+            var esferasGiomar = document.getElementsByClassName('esferasDeGiomar');            
+
+            for (var i = 0; i < esferasGiomar.length; i++) {
+                MovimentX(esferasGiomar[i]);
+                MovimentY(esferasGiomar[i]);
+            }            
+        }
+
+        function MovimentY(object) {
+            var posTop = object.getAttribute("posTop");
+            var increment = object.getAttribute("incrementY");
+            var idElement = object.getAttribute("id");
+            var speedY = parseInt(object.getAttribute("speedY"));
+
+            if (posTop < 500 && increment === "true") {
+                object.style.top = (posTop = posTop + speedY).toString() + "px";
+            } else {
+                object.style.top = (posTop = posTop - speedY).toString() + "px";
+                increment = false;
+                if (posTop <= 0)
+                    increment = true;
+            }
+
+            document.getElementById(idElement).setAttribute("incrementY", increment);
+            document.getElementById(idElement).setAttribute("posTop", posTop);
+        }
+
+        function MovimentX(object) {
+            var posLeft = object.getAttribute("posLeft");           // Obter o valor do left.
+            var increment = object.getAttribute("incrementX");       // Obter se o mesmo pode incrementar.
+            var idElement = object.getAttribute("id");
+            var speedX = parseInt(object.getAttribute("speedX"));
+
+            if (posLeft < 500 && increment === "true") {
+                object.style.left = (posLeft = posLeft + speedX).toString() + "px";
+            } else {
+                object.style.left = (posLeft = posLeft - speedX).toString() + "px";
+                increment = false;
+                if (posLeft <= 0)
+                    increment = true;
+            }
+
+            document.getElementById(idElement).setAttribute("incrementX", increment);
+            document.getElementById(idElement).setAttribute("posLeft", posLeft);
+        }
+
+        function CriarGiomar() {
+            var elementDoc = document.getElementsByClassName('screen')[0];
+            var elementLbl = document.getElementById('lblGiomarBallsCount');
+            var esferasGiomar = document.getElementsByClassName('esferasDeGiomar').length;
+
+            var speedX = getRandomIntInclusive(1, 20);
+            var speedY = getRandomIntInclusive(5, 10);
+
+            elementDoc.innerHTML += "<div speedX=" + speedX + "\" speedY=" + speedY + " id=" + esferasGiomar + " incrementX=\"true\" posleft=\"0\"  incrementY=\"true\" postop=\"50\" class=\"esferasDeGiomar\"></div>"
+            elementLbl.innerHTML = "Contador de esferas do Giomar:" + esferasGiomar;
+        }
+
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        /*
+        function MostraAlgo() {
+            var elementX = document.getElementById('btnClickMe');
+            alert('Press button' + elementX.value);
+        }*/
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pesquisa CEP</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-grid.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row" style="background-color:#b200ff">
+            <div class="col-md-2" style="text-align:right">
+                <input id="Button1" type="button" value="Pesquisar" />
+            </div>
+            <div class="col-md-10" style="text-align:left">
+                <input id="Text1" type="text" placeholder="CEP" />
+            </div>
+        </div>
+
+
+        <div class="row" style="background-color:green">
+            <div class="col-md-2" style="text-align:right">
+                <label for="Cep">CEP:</label>
+            </div>
+            <div class="col-md-10" style="text-align:left">
+                <input type="text" id="Cep" placeholder="Text content" />
+            </div>
+        </div>
+        <div class="row" style="background-color:green">
+            <div class="col-md-2" style="text-align:right">
+                <label for="Logradouro">Logradouro:</label>
+            </div>
+            <div class="col-md-10" style="text-align:left">
+                <input type="text" id="Logradouro" placeholder="Text content" />
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="blockbackground" style="background-color:rgba(0,0,0,1); position:absolute;width:100%;height:100%;top:0;left:0;"></div>
+
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.bundle.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#Button1').click(function(){
+                $.get("https://viacep.com.br/ws/38402100/json/", function(data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            });
+        });
+    </script>
+    <script>
+        $('#blockbackground').hide();
+
+        $(function () {
+            $('#Button1').click(function () {
+                $('#blockbackground').show(10);
+
+                $.get('https://viacep.com.br/ws/' + '#Text1' + '/json/', function (data) {
+                    $('#blockbackground').hide();
+                    
+                    $('#Cep').val(data.headers['cep']);
+                    $('#Logradouro').val(data.headers['logradouro']);
+                    $('#Complemento').val(data.headers['complemento']);
+                    $('#Bairro').val(data.headers['bairro']);
+                    $('#Localidade').val(data.headers['localidade']);
+                    $('#Uf').val(data.headers['uf']);
+                    $('#Unidade').val(data.headers['unidade']);
+                    $('#Ibge').val(data.headers['ibge']);
+                    $('#Gia').val(data.headers['gia']);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

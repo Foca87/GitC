@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>WebApi</title>
+    <!-- Include *at least* the core style and default theme -->
+    <link href="css/prettify.css" rel="stylesheet">
+    <link href="css/hemisu-light.css" rel="stylesheet">
+    <link href="css/screen.css" rel="stylesheet" media="screen">
+    <link id="style" href="css/classic.css" rel="stylesheet" media="screen">
+</head>
+    <body>
+        <div>
+            <form id="saveContactForm" method="post">                
+                <input type="text" name="Usuario1" placeholder="Usuário" />                
+                <input type="button" id="saveContact" value="Cadastrar" />
+            </form>
+            <div>
+                <input type="text" id="UsuarioPesquisa" placeholder="Usuário para pesquisa" />
+                <input type="button" id="buttonPesquisar" value="Pesquisar" />
+            </div>
+        </div>
+
+        <div id="gridContent">
+            <div id="exemplo"></div>
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!--jquery.columns.min.js-->
+        <script type="text/javascript" src="js/jquery.columns.min.js"></script>
+
+        <script>
+            $('#saveContact').click(function () {
+                $.post("http://localhost:56401/Api/Usuarios",
+                    $("#saveContactForm").serialize(),
+                    function (value) {
+                        GreidRefresh();
+                    }, "json");
+            });  
+
+            function GridRefresh() {
+                $.get('http://localhost:56401/Api/Usuarios', function (dataApi) {
+                    $('#gridContent').html("<div id=\"exemplo\"></div>");
+                    $('#exemplo').columns({ data: dataApi });
+                });
+            }
+
+            $('#buttonPesquisar').click(function () {
+                $.get('http://localhost:56401/Api/Usuarios' + $('#UsuarioPesquisa').val(), function (dataApi) {
+                    $('#gridContent').html("<div id=\"exemplo\"></div>");
+                    $('#exemplo').columns({ data: dataApi });
+                });
+            });            
+        </script>
+    </body>
+</html>

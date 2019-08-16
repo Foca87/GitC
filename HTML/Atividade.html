@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="deion" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Sistema HBSIS</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
+</head>
+<body class="text-center">
+    <div class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Sistema HBSIS</h1>
+        <label for="inputLogin" class="sr-only">Login</label>
+        <input id="inputLogin" type="text" class="form-control" placeholder="Login">
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input id="inputSenha" type="password" class="form-control" placeholder="Senha">
+        <button onclick="Pesquisar()" class="btn btn-lg btn-primary btn-block" type="button">Entrar</button>
+        <button onclick="Aumentar()" id="btnAumentar" class="btn btn-lg btn-primary btn-block">Aumentar</button>
+        <button onclick="Diminuir()" id="btnDiminuir" class="btn btn-lg btn-primary btn-block">Diminuir</button>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        var countIncrement = 16;
+
+        function Aumentar() {
+            var document1 = document.getElementById('inputLogin');
+            var document2 = document.getElementById('inputSenha');
+            countIncrement = countIncrement + 1;
+
+            document1.style.fontSize = (countIncrement) + "px";
+            document2.style.fontSize = (countIncrement) + "px";
+        }
+
+        function Diminuir() {
+            var document1 = document.getElementById('inputLogin');
+            var document2 = document.getElementById('inputSenha');
+            countIncrement = countIncrement - 1;
+
+            document1.style.fontSize = (countIncrement) + "px";
+            document2.style.fontSize = (countIncrement) + "px";
+        }
+
+        var data = [
+            {
+                    "Id": "1",
+                    "Login": "felipe",
+                    "Senha": "27"
+                },
+                {
+                    "Id": "2",
+                    "Login": "cbuhr",
+                    "Senha": "31"
+                },
+                {
+                    "Id": "3",
+                    "Login": "giomar",
+                    "Senha": "87"
+                }];
+
+        function Pesquisar() {
+            alerta = false;
+
+            $.each(data,
+                function (index, object) {
+                    var contentLogin = $('#inputLogin').val();
+                    var contentSenha = $('#inputSenha').val();
+
+                    if (contentLogin.localeCompare(object.Login) == 0 && contentSenha.localeCompare(object.Senha) == 0) {
+                        alerta = true;
+                    }
+                });
+
+            if (alerta) {
+                alert('Encontrado!');
+            } else {
+                alert('Não encontrado!');
+            }
+        }
+    </script>
+</body>
+</html>
