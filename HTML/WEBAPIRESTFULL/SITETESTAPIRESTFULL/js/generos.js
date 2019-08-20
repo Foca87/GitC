@@ -18,7 +18,7 @@
         var settings = {
 			"async": true,
 			"crossDomain": true,
-			"url": "http://localhost:59271/Api/Autores/"+id,
+			"url": "http://localhost:59271/Api/Generos/"+id,
 			"method": "GET",
 				"headers": {
 					"Content-Type": "application/json",
@@ -28,7 +28,7 @@
 	
 			$.ajax(settings).done(function (response) {
 				$('#Id').val(response.Id);
-				$('#Nome').val(response.Nome);
+				$('#Nome').val(response.Tipo);
 				$('#Descricao').val(response.Descricao);
 			});
 		
@@ -37,7 +37,7 @@
 	function Deleting(id){
 			 var settings = {
 			  "crossDomain": true,
-			  "url": "http://localhost:59271/Api/Autores/"+id,
+			  "url": "http://localhost:59271/Api/Generos/"+id,
 			  "method": "DELETE",
 			  "headers": {
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -54,7 +54,7 @@
 			var settings = {
 				"async": true,
 				"crossDomain": true,
-				"url": "http://localhost:59271/Api/Autores",
+				"url": "http://localhost:59271/Api/Generos",
 				"method": "GET",
 				"headers": {
 					"Content-Type": "application/json",
@@ -71,31 +71,31 @@
    
     function RefrestGrid(contentValue){
 	   $('#tDataGrid').empty();
-	   $('#tDataGrid').html(  '<tbody>'
-							+ 	'<tr>'
-							+ 		'<th>ID</th>'
-							+ 		'<th>Nome</th>'
-							+ 		'<th>Descrição</th>'
-							+ 		'<th>Opções</th>'
-							+ 	'</tr>'
-							+ '</tbody>');
+	   $('#tDataGrid').html( '<tbody>'
+						   + '<tr>'
+						   + '<th>ID</th>'
+						   + '<th>Tipo</th>'
+						   + '<th>Descrição</th>'
+						   + '<th>Opções</th>'
+						   + '</tr>'
+						   + '</tbody>');
 
 		$.each(contentValue,function(index,value) {
-        var row =     '<tr>'
-						+ '<td>' + value.Id       + '</td>'
-						+ '<td>' + value.Nome    + '</td>'
-						+ '<td>' + value.Descricao    + '</td>'
-						+ '<td>' 
-						+ 	'<div    class=\'col-md-12\' style=\'float: right;\'>'
-						+ 		'<div    class=\'col-md-6\'>'
-						+ 			'<button class=\'btn btn-block btn-danger col-md-3 ajax\' type=\'button\'  onclick=\'Deleting('+ value.Id +')\'>Remover</button>'
-						+ 		'</div>'
-						+ 		'<div     class=\'col-md-6\'>'
-						+ 			'<button  class=\'btn btn-block btn-success col-md-3\'    type=\'button\'  onclick=\'GetByID('+ value.Id +')\'\>Editar</button>'
-						+ 		'</div>'
-						+ 	'</div>'
-						+ '</td>'
-					+ '</tr>';
+        var row = '<tr>'
+				+ '<td>' + value.Id        + '</td>'
+				+ '<td>' + value.Tipo      + '</td>'
+				+ '<td>' + value.Descricao + '</td>'
+				+ '<td>' 
+				+ 	'<div    class=\'col-md-12\' style=\'float: right;\'>'
+				+ 		'<div    class=\'col-md-6\'>'
+				+ 			'<button class=\'btn btn-block btn-danger col-md-3 ajax\' type=\'button\'  onclick=\'Deleting('+ value.Id +')\'>Remover</button>'
+				+ 		'</div>'
+				+ 		'<div     class=\'col-md-6\'>'
+				+ 			'<button  class=\'btn btn-block btn-success col-md-3\'    type=\'button\'  onclick=\'GetByID('+ value.Id +')\'\>Editar</button>'
+				+ 		'</div>'
+				+ 	'</div>'
+				+ '</td>'
+				+ '</tr>';
         $('#tDataGrid').append(row);
 		});
     }
