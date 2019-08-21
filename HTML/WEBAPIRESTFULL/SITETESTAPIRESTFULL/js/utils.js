@@ -40,7 +40,13 @@ function buildUrlApi(sendpost, id = ''){
         return false;        
     });
 
-    SetGridClickEvents();
+    jQuery('.btn-cancel-form').click(function(){
+        var form = $(this).parent().parent().parent()[0];
+
+        $.each(form, function(index, value){
+            $('[name=\'' + value.name + '\']').val("");
+        })
+    });
 });
 
 function SetGridClickEvents(){
@@ -84,6 +90,7 @@ function SetGridClickEvents(){
             $.each(response, function(index, value){
                 /*teste Property and value*/
                 $('input[name="'+ index + '"]').val(value);
+                $('select[name="'+ index + '"]').val(value);
             });
 
             $('#btnCancelar').show();
