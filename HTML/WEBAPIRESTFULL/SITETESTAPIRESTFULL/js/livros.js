@@ -3,7 +3,6 @@ var editorasList;
 
 jQuery(document).ready(function(){
     var settings = {
-        "async": true,
         "crossDomain": true,
         "url": "http://localhost:59271/Api/Generos",
         "method": "GET",
@@ -19,6 +18,26 @@ jQuery(document).ready(function(){
         $.each(response, function(index, value){
             $('#Genero')[0].innerHTML += '<option value=\''+ value.id +'\'>'+ value.Tipo +'</option>';
         });
+    });
+    
+    settings = {
+        "crossDomain": true,
+        "url": "http://localhost:59271/Api/Editoras",
+        "method": "GET",
+        "headers": {
+            "Content-Type": "application/json",
+            "Accept": "*/*"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        editorasList = response;
+
+        $.each(response, function(index, value){
+            $('#Editora')[0].innerHTML += '<option value=\''+ value.id +'\'>'+ value.Nome +'</option>';
+        });
+
+        GetMethod(null);
     });    
 });
 
@@ -35,7 +54,6 @@ function TranslateField (fieldValue, listTranslate, toValue){
 
 function GetMethod(object){
     var settings = {
-        "async": true,
         "crossDomain": true,
         "url": "http://localhost:59271/Api/Usuarios",
         "method": "GET",
@@ -55,14 +73,17 @@ function GetMethod(object){
 function RefrestGrid(contentValue){
    $('#tDataGrid').empty();
    $('#tDataGrid').html( '<tbody>'
-                       + '<tr>'
-                       + '<th>ID</th>'
-                       + '<th>Título</th>'
-                       + '<th>Editora</th>'
-                       + '<th>Gênero</th>'
-                       + '<th>Observações</th>'
-                       + '<th>Opções</th>'
-                       + '</tr>'
+                       +    '<tr>'
+                       +        '<th>ID</th>'
+                       +        '<th>Registro</th>'
+                       +        '<th>Título</th>'
+                       +        '<th>ISBN</th>'
+                       +        '<th>Gênero</th>'
+                       +        '<th>Editora</th>'
+                       +        '<th>Sinopse</th>'
+                       +        '<th>Observações</th>'
+                       +        '<th>Opções</th>'
+                       +    '</tr>'
                        + '</tbody>');
 
     $.each(contentValue,function(index,value) {
@@ -75,10 +96,10 @@ function RefrestGrid(contentValue){
             + '<td>' 
             + 	'<div class=\'col-md-12\' style=\'float: right;\'>'
             + 		'<div class=\'col-md-6\'>'
-            + 			'<button class=\'btn btn-block btn-danger col-md-3 btn-delete-event\' type=\'button\' send-post=\'Usuarios\' value=\'' + value.Id + '\'>Remover</button>'
+            + 			'<button class=\'btn btn-block btn-danger col-md-3 btn-delete-event\' type=\'button\' send-post=\'Livros\' value=\'' + value.Id + '\'>Remover</button>'
             + 		'</div>'
             + 		'<div class=\'col-md-6\'>'
-            + 			'<button class=\'btn btn-block btn-success col-md-3 btn-editing-event\' send-post=\'Usuarios\' value=\'' + value.Id + '\' type=\'button\'\>Editar</button>'
+            + 			'<button class=\'btn btn-block btn-success col-md-3 btn-editing-event\' send-post=\'Livros\' value=\'' + value.Id + '\' type=\'button\'\>Editar</button>'
             + 		'</div>'
             + 	'</div>'
             + '</td>'
